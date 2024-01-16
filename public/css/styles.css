@@ -1,0 +1,510 @@
+/* Κανόνες για το background σε διάφορες περιοχές του εγγράφου */
+
+
+
+.red-heart {
+    color: red;
+  }
+  
+.heart-icon {
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    color:gray;
+  }
+
+.menu {
+    display: flex;
+    align-items: center;
+    width: 100%; /* Το μενού καταλαμβάνει το τελευταίο 1/4 του header */
+    clear:right;
+    clear: left;
+    height:50%;
+    flex-grow: 1;
+    
+}
+
+.menu ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    padding: 0;
+    flex-grow: 1;
+    
+}
+
+.menu li {
+    text-align: center;
+    padding: 10px;
+    background-color: #afafaf; /* Χρώμα φόντου των κελιών του μενού */
+    flex-grow: 1;
+    
+}
+
+.menu a {
+    text-decoration: none;
+    color: #f5f5f5; /* Χρώμα κειμένου συνδέσμου στο μενού */
+    flex-grow: 1;
+    
+}
+header {
+    height:10em;
+    width: 100%;
+    background-color:lightblue; /* Χρώμα φόντου κεφαλίδας */
+    position: fixed;
+    top:0;
+}
+
+/* Κανόνες για το footer */
+.footer {
+    background-color: #333; /* Χρώμα φόντου του footer */
+    color: #fff; /* Χρώμα κειμένου στο footer */
+    padding: 20px;
+    text-align: center; /* Κείμενο στο κέντρο του footer */
+    position: relative; /* Θέση ως σχετική */
+    clear: both;
+}
+/* Κανόνες για το body */
+body {
+    display: grid;
+    grid-template-columns: 1fr 4fr 1fr; /* 3 στήλες με αναλογία 1:4:1 */
+    grid-template-rows: auto 1fr auto; /* 3 γραμμές: 1η γραμμή αυτόματου ύψους, 2η γραμμή που καταλαμβάνει τον μεγαλύτερο χώρο, 3η γραμμή αυτόματου ύψους */
+    grid-template-areas:
+        "header header header"
+        "sidebar-left main sidebar-right"
+        "footer footer footer"; /* Ορισμός ονομάτων περιοχών */
+    height: 100vh;
+    margin: 0;
+    
+   
+    
+}
+
+   
+/* Στυλ για την φόρμα */
+form {
+    max-width: 600px; /* Μέγιστο πλάτος της φόρμας */
+    margin: 20px auto; /* Κεντράρισμα της φόρμας στο κέντρο της σελίδας */
+    background-color: #fff; /* Χρώμα φόντου */
+    padding: 20px; /* Περιθώριο εσωτερικά από τα όρια της φόρμας */
+    border-radius: 8px; /* Κυρτές άκρες */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Σκίαση γύρω από την φόρμα */
+  }
+  
+  /* Στυλ για τις ετικέτες */
+  label {
+    display: block; /* Καθιστά την ετικέτα μια block στοιχείο για καλύτερη διάταξη */
+    margin-bottom: 8px; /* Απόσταση κάτω από κάθε ετικέτα */
+  }
+  
+  /* Στυλ για τα πεδία εισαγωγής και τα dropdown */
+  input, select {
+    width: 100%; /* Γέμισμα του 100% του πλάτους του γονικού στοιχείου */
+    padding: 8px; /* Εσωτερικό περιθώριο των πεδίων εισαγωγής και των dropdowns */
+    margin-bottom: 15px; /* Απόσταση κάτω από κάθε πεδίο */
+    border: 1px solid #ccc; /* Χρώμα και πάχος του περιγράμματος */
+    border-radius: 4px; /* Κυρτές άκρες */
+    box-sizing: border-box; /* Συμπερίληψη του πάχους των περιγραμμάτων στο συνολικό πλάτος/ύψος */
+  }
+
+  
+  
+  /* Στυλ για το κουμπί υποβολής */
+  button {
+    background-color: #4caf50; /* Χρώμα φόντου του κουμπιού */
+    color: #fff; /* Χρώμα κειμένου του κουμπιού */
+    padding: 10px 15px; /* Εσωτερικό περιθώριο του κουμπιού */
+    border: none; /* Χωρίς περίγραμμα */
+    border-radius: 4px; /* Κυρτές άκρες */
+    cursor: pointer; /* Κατάλληλο δείκτη για το ποντίκι */
+    font-size: 16px; /* Μέγεθος γραμματοσειράς του κουμπιού */
+  }
+  
+  /* Στυλ για το κουμπί υποβολής κατά την αιώρηση (hover) */
+  button:hover {
+    background-color: #45a08b; /* Χρώμα φόντου όταν το ποντίκι αιωρείται πάνω από το κουμπί */
+  }
+  .errormessage {
+    color: #ff0000; /* Χρώμα κόκκινου για το μήνυμα λάθους */
+    text-align: center; /* Κείμενο κεντρικά */
+    margin-top: 10px; /* Απόσταση από τα υπόλοιπα στοιχεία */
+}
+.error-input {
+    border: 1px solid #ff0000; /* Χρώμα περιγράμματος κόκκινο για λάθος είσοδο */
+}
+  
+  
+
+/* Κανόνες για το header */
+.header {
+    grid-area: header; /* Αντιστοίχιση στην περιοχή "header" */
+    display: flex;
+    align-items:center;
+    justify-content: space-between;
+    background-color: lightblue; /* Χρώμα του header */
+    padding: 0;
+    flex-direction: column;
+}
+
+/* Κανόνες για το main */
+.main {
+    grid-area: main; /* Αντιστοίχιση στην περιοχή "main" */
+    background-color: white; /* Χρώμα του κεντρικού περιεχομένου */
+    margin-top: 200px; /* Απόσταση από το header */
+    padding: 20px;
+}
+
+/* Κανόνες για τα sidebars */
+.sidebar-left {
+    grid-area: sidebar-left; /* Αντιστοίχιση στην περιοχή "sidebar-left" */
+    background-color: rgb(0, 217, 255); /* Χρώμα του πλαισίου (αριστερό sidebar) */
+}
+
+.sidebar-right {
+    grid-area: sidebar-right; /* Αντιστοίχιση στην περιοχή "sidebar-right" */
+    background-color: rgb(0, 217, 255); /* Χρώμα του πλαισίου (δεξί sidebar) */
+}
+
+/* Κανόνες για το footer */
+.footer {
+    grid-area: footer; /* Αντιστοίχιση στην περιοχή "footer" */
+    background-color: #333; /* Χρώμα του footer */
+    color: #fff; /* Χρώμα του κειμένου στο footer */
+    padding: 20px;
+    text-align: center;
+    width: 100%;
+}
+
+
+
+
+
+.social-links {
+    list-style: none;
+    padding: 0;
+}
+
+.social-links li {
+    display: inline;
+    margin:  10px; /* Απόσταση μεταξύ των στοιχείων των κοινωνικών δικτύων */
+}
+
+.social-links a {
+    text-decoration: none;
+    color: #fff; /* Χρώμα κειμένου συνδέσμου στα κοινωνικά δίκτυα */
+}
+
+
+article, section {
+    background-color: white; /* Χρώμα φόντου περιοχών άρθρου/ενότητας */
+}
+
+/* Κανόνες για το στυλ κειμένου σε διάφορες περιοχές */
+h1, h2, h3  {
+    font-family: 'myFirstFont', sans-serif;
+    font-size: 24px;
+    color: #333;
+    text-align: center;
+}
+
+
+p {
+    font-family: 'Georgia', serif;
+    font-size: 16px;
+    color: #666;
+}
+
+/* Κανόνες για κλάσεις CSS για περιεχόμενο */
+.text-important {
+    font-weight: bold;
+    color: #f00;
+}
+
+.text-highlight {
+    background-color: #ffff00;
+}
+.text-emphasis {
+    font-weight: bold;
+    color: #f00;
+}
+/* Κανόνες για ψευδοκλάσεις υπερσυνδέσμων */
+a:link {
+    color: #0077b6; /* Χρώμα συνδέσμων που δεν έχουν επισκεφθεί */
+}
+
+a:visited {
+    color: #880e4f; /* Χρώμα συνδέσμων που έχουν επισκεφθεί */
+}
+
+a:hover {
+    color: #ff7700; /* Χρώμα συνδέσμων όταν ο δείκτης του ποντικιού περνά πάνω τους */
+}
+
+a:active {
+    color: #ff0000; /* Χρώμα συνδέσμων όταν πατιούνται */
+}
+
+/* Κανόνες για το box model και float */
+picture img {
+    background-color: #f5f5f5;
+    margin: 10px; /* Προσθήκη εξωτερικών περιθωρίων για να δημιουργήσετε χώρο γύρω από τις εικόνες */
+}
+.my-image {
+    width: 220px;
+    height: 150px;
+    float: left;
+    margin-bottom: 20px;
+}
+.myg{
+    max-width: 100%;
+    max-height: 100%;
+    float: left;
+}
+.gclass{
+    height: 200px;
+    width: auto;
+}
+.g{
+    height: 200px;
+    margin-right: 20px;
+    float: left;
+    margin-right: 20px;
+}
+
+/* Στιλ για το figure> */
+figure {
+    margin: 0;
+    padding: 0;
+    clear: both;
+}
+
+/* Στιλ για την εικόνα μέσα στο <figure> */
+figure picture img {
+    max-width: 100%;
+    height: auto;
+    margin:  auto;
+}
+
+/* Στιλ για το <figcaption> */
+figcaption {
+    font-style: italic;
+    color: #555;
+    margin-left: 10px; /* Απόσταση αριστερά από την εικόνα */
+    margin-top: 30px;
+}
+.indexpng{
+    width: 220px;
+    height: 150px;
+    float: right;
+
+}
+.login-form-container {
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+  }
+
+  .login-form-container label {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  /* Προσθήκη στυλ για το κουμπί Login */
+  
+    #loginButton {
+        cursor: pointer;
+        position: absolute;
+        top: 0;
+        right: 0;}
+
+@font-face {
+    font-family: 'myFirstFont';
+    src: url('font.ttf');
+    font-weight: 400;
+    font-style: normal;
+  }
+
+
+/* Media Queries για την ευέλικτη διάταξη στην tablet */
+@media screen and (min-width: 768px) and (max-width:1023px) {
+    body {
+        grid-template-columns: 9fr 1fr; /* 2 στήλες για tablet */
+        grid-template-areas:
+        "header header "
+        "main sidebar-right"
+        "footer footer "; /* Ορισμός ονομάτων περιοχών */
+    }
+    p{
+        font-size: 14px;
+    }
+    h1, h2, h3  {
+        
+        font-size: 21px;
+       
+    }
+    .main {
+       
+        margin-top: 175px; /* Απόσταση από το header */
+        padding: 17.5px;
+    }
+    header{
+        height: 8.75em;
+    }
+    figcaption{
+        margin-left: 11.25px;
+        margin-top: 33.75px;
+    }
+    .my-image {
+        width: 192px;
+        height: 131px;
+        
+        margin-bottom: 17.5px;
+    }
+    
+    .gclass{
+        height: 175px;
+        
+    }
+    .g{
+        height: 175px;
+        margin-right: 17.5px;
+        float: left;
+        margin-right: 17.5px;
+    }
+    
+    /* Στυλ για την φόρμα */
+    form {
+        max-width: 525px; /* Μέγιστο πλάτος της φόρμας */
+        padding: 18px; /* Περιθώριο εσωτερικά από τα όρια της φόρμας */
+        border-radius: 7px; /* Κυρτές άκρες */
+       
+    }
+    
+    /* Στυλ για τις ετικέτες */
+    label {
+        margin-bottom: 7.5px; /* Απόσταση κάτω από κάθε ετικέτα */
+    }
+    
+    /* Στυλ για τα πεδία εισαγωγής και τα dropdown */
+    input, select {
+        width: 100%; /* Γέμισμα του 100% του πλάτους του γονικού στοιχείου */
+        padding: 7.5px; /* Εσωτερικό περιθώριο των πεδίων εισαγωγής και των dropdowns */
+        margin-bottom: 14px; /* Απόσταση κάτω από κάθε πεδίο */
+        
+        border-radius: 3.5px; /* Κυρτές άκρες */
+
+    }
+    .error-input {
+        border: 1px solid #ff0000; /* Χρώμα περιγράμματος κόκκινο για λάθος είσοδο */
+    }
+    /* Στυλ για το κουμπί υποβολής */
+    button {
+        font-size: 15px; /* Μέγεθος γραμματοσειράς του κουμπιού */
+    }
+    
+    /* Στυλ για το κουμπί υποβολής κατά την αιώρηση (hover) */
+    button:hover {
+        background-color: #45a08b; /* Χρώμα φόντου όταν το ποντίκι αιωρείται πάνω από το κουμπί */
+    }
+    
+}
+
+
+/* Media Queries για την ευέλικτη διάταξη στο desktop */
+@media screen and (min-width: 1024px) {
+    body {
+        grid-template-columns: 1fr 8fr 1fr; /* 3 στήλες για desktop */
+    }
+    /*Oυσιαστικα αν δεν εχουμε οθονη ταμπλετ η κινητου ,δεν θα εχουμε αλλαγη στο παραπανω ορισμο των styles αρα θα ειναι ιδανικες ρυθμισεις για desktop*/
+    
+
+}
+/* Media Query για κινητά */
+@media screen and (max-width: 767px) {
+    /* Αλλαγές για κινητά εδώ */
+    body {
+        grid-template-columns: 1fr; /* Μία στήλη για κινητά */
+        grid-template-areas:
+        "header"
+        "main"
+        "footer"; /* Ορισμός ονομάτων περιοχών */
+    }
+    p{
+        font-size: 12px;
+    }
+    h1, h2, h3  {
+        
+        font-size: 18px;/*Αλλαξε το μεγεθος των επικεφαλιδων στα κινητα*/
+       
+    }
+    .header{
+        position: relative;
+    }
+    header{
+        height: 7.65em;
+
+   }
+   .main {
+       
+    margin-top: 50px; /* Απόσταση από το header */
+    padding: 15.3px;
+  }
+   figcaption{
+    margin-left: 12.65px;
+    margin-top: 37.95px;
+    }
+    .my-image {
+        width: 168px;
+        height: 114px;
+        
+        margin-bottom: 15.3px;
+    }
+    
+    .gclass{
+        height: 153px;
+        
+    }
+    .g{
+        height: 153px;
+        margin-right: 15.3px;
+        float: left;
+        margin-right: 15.3px;
+    }
+     /* Στυλ για την φόρμα */
+     form {
+        max-width: 500px; /* Μέγιστο πλάτος της φόρμας */
+        padding: 17px; /* Περιθώριο εσωτερικά από τα όρια της φόρμας */
+        border-radius: 6.5px; /* Κυρτές άκρες */
+       
+    }
+    
+    /* Στυλ για τις ετικέτες */
+    label {
+        margin-bottom: 7px; /* Απόσταση κάτω από κάθε ετικέτα */
+    }
+    
+    /* Στυλ για τα πεδία εισαγωγής και τα dropdown */
+    input, select {
+        width: 100%; /* Γέμισμα του 100% του πλάτους του γονικού στοιχείου */
+        padding: 7px; /* Εσωτερικό περιθώριο των πεδίων εισαγωγής και των dropdowns */
+        margin-bottom: 13px; /* Απόσταση κάτω από κάθε πεδίο */
+        
+        border-radius: 3px; /* Κυρτές άκρες */
+
+    }
+    
+    /* Στυλ για το κουμπί υποβολής */
+    button {
+        font-size: 14px; /* Μέγεθος γραμματοσειράς του κουμπιού */
+    }
+    
+    /* Στυλ για το κουμπί υποβολής κατά την αιώρηση (hover) */
+    button:hover {
+        background-color: #45a08b; /* Χρώμα φόντου όταν το ποντίκι αιωρείται πάνω από το κουμπί */
+    }
+    
+}

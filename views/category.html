@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+
+  <link rel="stylesheet" type="text/css" href="/css/styles.css">
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Κατηγορίες</title>
+    
+</head>
+<header class="header">
+    
+    <h1>YourSearch!</h1>
+    <nav class="menu">
+        <ul>
+            <li><a href="/">Αρχική</a></li>
+            <li><a href="categories.html">Κατηγορίες</a></li>
+            <li><a href="aboutUs.html">About us</a></li>
+            <li><a href="ContactUs.html">Επικοινωνία</a></li>
+            <li><a href="Form.html">Φορμα </a></li>
+            
+        </ul>
+    </nav><br>
+   
+
+    
+
+</header>
+<br>
+
+<body>
+    <div class="sidebar-left"></div>
+    <div class="sidebar-right"></div>
+    
+    
+    <main class="main">
+      <script src="https://cdn.jsdelivr.net/npm/handlebars@4.7.7/dist/handlebars.min.js"></script>
+        <!-- Κουμπί Login -->
+        <button id="loginButton">Login</button>
+        <!-- Φόρμα Σύνδεσης -->
+        <div class="login-form-container" id="loginForm">
+            <form action="/login" method="post">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" autocomplete="username">
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" autocomplete="current-password">
+
+            <button type="submit">Σύνδεση</button>
+            </form>
+        </div>
+        <!-- Προσθήκη σεναρίου JavaScript -->
+  
+        
+        <div id="ads-container"></div>
+
+        
+        `<a href="category/${subcategory.id}">${subcategory.title}</a>`
+        <script id="ad-template" type="text/x-handlebars-template">
+          
+          {{#each ads}}
+            <div class="ad">
+              <h2>{{title}}</h2>
+              
+              <figure><img class="my-image "src="http://wiki-ads.onrender.com/{{images.[0]}}" alt="{{title}} Image">
+                <figcaption>
+                  <span class="heart-icon" id="heart-icon-{{id}}" onclick="addToFavorites('{{id}}', '({{title}})', '({{description}})', '{{cost}}', '{{images.[0]}}')">❤</span>
+
+                <p>{{description}}</p>
+                <p>Τιμη:{{cost}}$</p></figcaption>
+                <p>Πατησε <a href="subcategory/{{subcategory_id}}&{{id}}">εδω</a></p>
+            </figure>
+              
+              
+            </div>
+          {{/each}}
+          <!-- Προσθέστε αυτόν τον κώδικα όπου θέλετε τον σύνδεσμο -->
+          <a href="javascript:void(0);" onclick="createUrl()">Αγαπημένες Αγγελίες</a>
+
+
+        </script>
+      
+        
+        <script src="/category.js"></script>
+        <script>
+          document.getElementById('loginButton').addEventListener('click', function() {
+            // Εμφάνιση/απόκρυψη της φόρμας σύνδεσης όταν πατάει το κουμπί Login
+            var loginForm = document.getElementById('loginForm');
+            loginForm.style.display = (loginForm.style.display === 'none' || loginForm.style.display === '') ? 'block' : 'none';
+          });
+      
+        </script>
+        <script>
+          let sessionId2=null;
+          let stat=false;
+          document.getElementById('loginForm').addEventListener('submit', function(event) {
+          event.preventDefault();
+      
+            let username = document.getElementById('username').value;
+            let password = document.getElementById('password').value;
+            
+      
+            // Αποστολή αιτήματος POST στον server
+            let myHeaders=new Headers();
+            myHeaders.append('Content-Type', 'application/json')
+            let data= JSON.stringify({
+                username: username,
+                password: password,
+              })
+            console.log(data);
+            const currentUrl = window.location.href;
+            console.log(currentUrl);
+            // Εξάγετε την τιμή της παραμέτρου categoryId από το URL
+                          // Εξάγετε την τιμή της παραμέτρου categoryId από το URL
+            const categoryId = window.location.pathname.split("/").pop();
+
+            console.log("CategoryId:", categoryId);
+
+            const login=`http://localhost:3000/login`;
+           
+            
+      
+            
+            fetch(login, {
+              method: 'POST',
+              headers:myHeaders,
+              body:JSON.stringify({
+                username: username,
+                password: password,
+              })
+              
+            })
+            .then(response => response.json())
+            .then(data => {
+              
+                   // Κρύψε το πλαίσιο της φόρμας μετά την επιτυχή σύνδεση
+                   if((data.success)){
+                    sessionId2=data.sessionId;
+                    stat=true;
+                    document.querySelector('.login-form-container').style.display = 'none';
+                    document.getElementById('loginButton').style.display='none'
+                    alert("Επιτυχημενη Συνδεση")
+                    console.log(data.sessionId)
+                    fetch('http://localhost:4000/log',{
+                      method: 'POST',
+                      headers:myHeaders,
+                      body:JSON.stringify({
+                      username: username,
+                      sessionId:sessionId2,
+                      })
+
+                    })
+                    .then(response => response.json())
+                    
+                   }else{
+                    alert("Aνεπιτυχης Συνδεση")
+                   }
+                 
+            })
+
+            .catch(error => {
+              console.error('Error:', error);
+            });
+      
+          });
+
+          function addToFavorites(id, title, description, cost, imageUrl) {
+            console.log(id, title, description, cost, imageUrl);
+                console.log(stat);
+                if (stat) {
+                  // Καλέστε την υπηρεσία AFS για προσθήκη στα αγαπημένα
+                  const afsUrl = 'http://localhost:4000/ADfav';
+                  
+                  // Κατασκευή του αντικειμένου που θα σταλεί στο AFS
+                  const adData = {
+                    id: id,
+                    title: title,
+                    description: description,
+                    cost: cost,
+                    img_url: imageUrl,
+                    username: document.getElementById('username').value,
+                    sessionId: sessionId2
+                  };
+
+                  fetch(afsUrl, {
+                    method: 'POST',
+                    headers: {
+                      'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(adData)
+                  })
+                  .then(response => response.json())
+                  .then(data => {
+                    console.log(data);
+                   
+                    if (data.success) {
+                    setTimeout(() => {
+                      const heartIcon = document.querySelector(`#heart-icon-${id}`);
+                      heartIcon.style.color='red';
+                    }, 100);
+
+                    // Καθυστερημένη εμφάνιση του μηνύματος μετά από 2 δευτερόλεπτα
+                    
+                      alert('Η αγγελία προστέθηκε στα αγαπημένα!');
+                    } else {
+                      alert('Η αγγελία είναι ήδη στα αγαπημένα σας η υπαρχει θεμα εξουσιοδοτησης');
+                    }
+                  })
+                  .catch(error => {
+                    console.error('Error:', error);
+                  });
+                } else {
+                  alert("Παρακαλώ συνδεθείτε για προσθήκη στη λίστα αγαπημένων");
+                }
+              }
+              function createUrl() {
+                    const username = document.getElementById('username').value;
+                    const sessionId = sessionId2;  // Προσθέστε τον κωδικό sessionId από όπου κρατάτε την τιμή
+
+                    const url = `favorite-ads.html/${username}/${sessionId}`;
+                    
+                    // Εδώ μπορείτε να κάνετε ό,τι θέλετε με το url, π.χ. να ανοίξετε το url σε νέο παράθυρο ή καρτέλα
+                    // Εναλλακτικά, μπορείτε να αποθηκεύσετε το url σε μια μεταβλητή για μελλοντική χρήση
+
+                    console.log("Generated URL:", url);
+                    window.location.href = url;  // Ανακατεύθυνση προς το δημιουργημένο URL
+              }
+      </script>
+        
+    
+    </main></body>
+<footer class="footer">
+    <address>
+        Τηλέφωνο: <b>123-456-7890</b><br>
+        Email: <b>YourSearch@info.gr</b>
+    </address>
+    <ul class="social-links">
+        <li><a href="https://www.facebook.com/">Facebook</a></li>
+        <li><a href="https://twitter.com/">Twitter</a></li>
+        <li><a href="https://www.linkedin.com/">LinkedIn</a></li>
+    </ul>
+</footer>
+</html>

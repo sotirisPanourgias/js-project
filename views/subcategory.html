@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+
+    <meta charset="UTF-8">
+    <title>Κατηγορίες</title>
+    
+</head>
+<header class="header">
+    
+    <h1>YourSearch!</h1>
+    <nav class="menu">
+        <ul>
+            <li><a href="/">Αρχική</a></li>
+            <li><a href="categories.html">Κατηγορίες</a></li>
+            <li><a href="aboutUs.html">About us</a></li>
+            <li><a href="ContactUs.html">Επικοινωνία</a></li>
+            <li><a href="Form.html">Φορμα </a></li>
+            
+        </ul>
+    </nav><br>
+    
+
+</header>
+<br>
+
+<body>
+    <div class="sidebar-left"></div>
+    <div class="sidebar-right"></div>
+    
+    
+    <main class="main" >  
+      <script src="https://cdn.jsdelivr.net/npm/handlebars@4.7.7/dist/handlebars.min.js"></script>
+        <div id="ads-container"></div>
+
+  <!-- Άλλος HTML κώδικας... -->
+  
+
+  <script id="ad-template" type="text/x-handlebars-template">
+    
+      <div class="ad">
+        <h2>{{title}}</h2>
+        <p>{{description}}</p>
+        {{#each images}}
+          <img class="my-image"src="http://wiki-ads.onrender.com/{{this}}" alt="{{title}} Image">
+        {{/each}}
+        <p>Τιμή: {{cost}}€</p>
+
+        <!-- Πίνακας με χαρακτηριστικά -->
+        <table>
+          <tr>
+            <th>Χαρακτηριστικό</th>
+            <th>Τιμή</th>
+          </tr>
+          {{#each (splitFeatures features)}}
+            {{#if this}}
+              {{#with (splitFeatureValue this)}}
+                <tr>
+                  <td>{{this.[0]}}</td>
+                  <td>{{this.[1]}}</td>
+                </tr>
+              {{/with}}
+            {{/if}}
+          {{/each}}
+        </table>
+      </div>
+    
+  </script>
+  
+  <script src="/subcategory.js"></script>
+    
+    </main></body>
+<footer class="footer">
+    <address>
+        Τηλέφωνο: <b>123-456-7890</b><br>
+        Email: <b>YourSearch@info.gr</b>
+    </address>
+    <ul class="social-links">
+        <li><a href="https://www.facebook.com/">Facebook</a></li>
+        <li><a href="https://twitter.com/">Twitter</a></li>
+        <li><a href="https://www.linkedin.com/">LinkedIn</a></li>
+    </ul>
+</footer>
+</html>

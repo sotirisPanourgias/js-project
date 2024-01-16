@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+
+  <link rel="stylesheet" type="text/css" href="/css/styles.css">
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+    <title>Aγαπημενες Κατηγορίες</title>
+    
+</head>
+<header class="header">
+    
+    <h1>YourSearch!</h1>
+    <nav class="menu">
+        <ul>
+            <li><a href="/">Αρχική</a></li>
+            <li><a href="categories.html">Κατηγορίες</a></li>
+            <li><a href="aboutUs.html">About us</a></li>
+            <li><a href="ContactUs.html">Επικοινωνία</a></li>
+            <li><a href="Form.html">Φορμα </a></li>
+            
+        </ul>
+    </nav><br>
+   
+
+    
+
+</header>
+
+<body>
+  
+    <div class="sidebar-left"></div>
+    <div class="sidebar-right"></div>
+    
+    
+    <main class="main">
+      <script src="https://cdn.jsdelivr.net/npm/handlebars@4.7.7/dist/handlebars.min.js"></script>
+      <div id="f-ads-container"></div>
+        <script id="favorite-ads-template" type="text/x-handlebars-template">
+            {{#each favoriteAds}}
+              <div class="ad">
+                <h2>{{title}}</h2>
+
+
+                
+                <figure>
+                  <img class="my-image" src="http://wiki-ads.onrender.com/{{img_url}}" alt="{{title}} Image">
+                  <figcaption>
+                    <p>{{description}}</p>
+                    <p>Τιμή: {{cost}}$</p>
+                  </figcaption>
+                </figure>
+              </div>
+            {{/each}}
+        </script>
+
+        <script src="/favorites-ads.js"></script>
+          <script>console.log('fav')</script>
+    </main>
+
+</body>
+
+<footer class="footer">
+    <address>
+        Τηλέφωνο: <b>123-456-7890</b><br>
+        Email: <b>YourSearch@info.gr</b>
+    </address>
+    <ul class="social-links">
+        <li><a href="https://www.facebook.com/">Facebook</a></li>
+        <li><a href="https://twitter.com/">Twitter</a></li>
+        <li><a href="https://www.linkedin.com/">LinkedIn</a></li>
+    </ul>
+</footer>
+</html>

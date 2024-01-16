@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+
+
+    <meta charset="UTF-8">
+    <title>Αρχική Σελίδα</title>
+    
+</head>
+<header class="header">
+    
+    <h1>YourSearch!</h1>
+    <nav class="menu">
+        <ul>
+            <li><a href="/">Αρχική</a></li>
+            <li><a href="categories.html">Κατηγορίες</a></li>
+            <li><a href="aboutUs.html">About us</a></li>
+            <li><a href="ContactUs.html">Επικοινωνία</a></li>
+            
+        </ul>
+    </nav><br>
+    
+
+</header>
+
+
+
+
+<body>
+    <div class="sidebar-left"></div>
+    <div class="sidebar-right"></div>
+    <main class="main">
+        <script src="https://cdn.jsdelivr.net/npm/handlebars@4.7.7/dist/handlebars.min.js"></script>
+        <script id="category-template" type="text/x-handlebars-template">
+            <div class="category">
+                <!-- ... Περιεχόμενο template ... -->
+                <h2>{{title}}</h2>
+                <figure>
+                    <img src= "http://wiki-ads.onrender.com/{{img_url}}" alt="{{title}}">
+                    
+                        
+                </figure>
+            </div>
+        </script>
+        <script src="index.js"></script>
+        
+        <div id="categories-container"></div>
+    </main>
+</body>
+
+
+    <footer class="footer">
+        <address>
+            Τηλέφωνο: <b>123-456-7890</b><br>
+            Email: <b>YourSearch@info.gr</b>
+        </address>
+        <ul class="social-links">
+            <li><a href="https://www.facebook.com/">Facebook</a></li>
+            <li><a href="https://twitter.com/">Twitter</a></li>
+            <li><a href="https://www.linkedin.com/">LinkedIn</a></li>
+        </ul>
+    </footer>
+
+    
+    
+
+</html>
